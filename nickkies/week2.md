@@ -78,7 +78,7 @@
 #### PostgreSQL Replication
     master / stand by
 
-#### Replication 구축 방식
+#### PostgreSQL Replication 구축 방식
     1. WAL
         - master server의 모든 작업을 log남기고 (+ 파일로 저장됨)
         - stand by server로 전달
@@ -89,3 +89,17 @@
         - 거의 실시간
         - 파일 저장유무 x, 그냥 바로 보냄
         - 데이터 유실 우려가 있기 때문에 Log-Shipping방식으로 대처
+
+### 강의13. MySQL의 scale-out과 partitioning
+-> ROW_NUMBER() OVER (PARTITION BY ...) 아님~
+
+#### MySQL의 scale-out 전략
+    -> 메모리에 올라가지 않을 때 partitioning
+    -> 국소성이 증가하는것 이외에 모든 것이 나빠짐...
+    -> 첫글씨 / 날짜등으로... 
+    -> 조건에 의한 캐싱데이터를 뷰테이블이나 새로운 테이블을 만들어서 관리하는 것도 방법
+    -> 결국 상황에 따라서 정답은 다름
+
+
+
+
