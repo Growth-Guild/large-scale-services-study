@@ -64,3 +64,28 @@
         - 외부기어장치 탐색 시에 Seek 횟수를 최소화하는 트리 구조
         - 색인의 계산량: O(n) -> O(logn) (400만 -> 25.25)
     * column을 조합해서 index를 만들기도 한다.
+
+### 강의12. MySQL의 분산
+-> 확장을 전제로 한 시스템 설계
+
+#### MySQL의 Replication 기능
+    master: CRUD
+    slaves: Read only
+
+#### master slave 
+-> 참조계열(slave)은 확장하고 갱신계열(master)는 확장하지 않는다
+
+#### PostgreSQL Replication
+    master / stand by
+
+#### Replication 구축 방식
+    1. WAL
+        - master server의 모든 작업을 log남기고 (+ 파일로 저장됨)
+        - stand by server로 전달
+        - restore
+    2. Log-Shipping
+        - 일정 log가 쌓이면 파일 째로 전달
+    3. Streaming
+        - 거의 실시간
+        - 파일 저장유무 x, 그냥 바로 보냄
+        - 데이터 유실 우려가 있기 때문에 Log-Shipping방식으로 대처
